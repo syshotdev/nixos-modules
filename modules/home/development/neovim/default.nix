@@ -131,11 +131,12 @@
     jdt-language-server # Java
     gdtoolkit # GDscript
     lua-language-server
-    ccls # C
     csharp-ls
     nil # Nix
 
-    # Packages that are required as dependencies
+    ccls # Useful C related things
+    glib # C standard library but not
+    clang
     gcc
   ];
 }

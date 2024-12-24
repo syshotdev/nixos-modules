@@ -1,6 +1,5 @@
 local map = vim.keymap.set;
 
--- TODO: Remove 'opts' and replace with desc and noremap
 -- Double quotes used because "lua require('')" messes stuff up
 map('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<cr>", { desc = "Find Files", noremap = true })
 map('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<cr>", { desc = "Find Words", noremap = true })
