@@ -136,7 +136,6 @@
 
     ccls # Useful C related things
     glib # C standard library but not
-    clang
     gcc
   ];
 }
