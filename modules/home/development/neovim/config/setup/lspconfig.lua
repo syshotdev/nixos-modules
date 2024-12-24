@@ -1,7 +1,8 @@
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local servers = { 'gdscript', 'dockerls', 'lua_ls', 'vimls', 'csharp_ls', 'gradle_ls', 'jdtls', 'ccls', 'rust_analyzer', 'nil_ls'}
+local servers = { 'gdscript', 'dockerls', 'lua_ls', 'vimls', 'csharp_ls', 'gradle_ls', 'jdtls', 'ccls', 'rust_analyzer',
+  'nil_ls' }
 
 -- For every server, add these keymaps
 for _, lsp in ipairs(servers) do
@@ -16,10 +17,10 @@ end
 
 
 -- Specific lua-for-neovim setup
-require'lspconfig'.lua_ls.setup {
+require 'lspconfig'.lua_ls.setup {
   on_init = function(client)
     local path = client.workspace_folders[1].name
-    if vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc') then
+    if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
       return
     end
 
@@ -46,4 +47,26 @@ require'lspconfig'.lua_ls.setup {
   settings = {
     Lua = {}
   }
+}
+
+
+local function get_pkg_config_flags()
+  local handle = io.popen("pkg-config --cflags glib-2.0")
+  if (handle == nil) then
+    return ""
+  end
+  local result = handle:read("*a")
+  handle:close()
+  return vim.split(result:gsub("%s+", " "), "\n", { trimempty = true })
+end
+
+require('lspconfig').ccls.setup {
+  init_options = {
+    cache = {
+      directory = ".ccls-cache",
+    },
+    clang = {
+      extraArgs = get_pkg_config_flags(),
+    },
+  },
 }
