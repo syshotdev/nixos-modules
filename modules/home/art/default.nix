@@ -1,5 +1,5 @@
 {
-  blender_cad = ./blender_cad;
-  video_editing = ./video_editing;
-  video_recording = ./video_recording;
+  blender-cad = ./blender-cad;
+  video-editing = ./video-editing;
+  video-recording = ./video-recording;
 }
