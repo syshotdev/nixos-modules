@@ -4,6 +4,8 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.mak
 local servers = { 'gdscript', 'dockerls', 'lua_ls', 'vimls', 'csharp_ls', 'gradle_ls', 'jdtls', 'ccls', 'rust_analyzer',
   'nil_ls' }
 
+print("LSPconfig setting up")
+
 -- For every server, add these keymaps
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup {
@@ -15,6 +17,7 @@ for _, lsp in ipairs(servers) do
   }
 end
 
+print("LSPconfig servers inited")
 
 -- Specific lua-for-neovim setup
 require 'lspconfig'.lua_ls.setup {
@@ -70,3 +73,5 @@ require('lspconfig').ccls.setup {
     },
   },
 }
+
+print("LSPconfig servers configured fully!")
