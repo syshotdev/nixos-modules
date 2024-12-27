@@ -25,7 +25,6 @@ Neovim easy git
 Neovim edit .docx and .md (.docx maybe not, but .md I wanna see preview)
 Neovim goto definition working in C with header files
 Neovim how do I save a file with a name without going into nvim-filetree?
-Neovim terminal find out how to get out of it when you've typed into it
 Neovim visual indicators for buffers
 Neovim whenever I close terminal keep buffers the way they are
 Neovim whenever I open terminal keep buffers the way they are
@@ -44,7 +43,6 @@ Why is it that when I run an application, it gives an "incompatible qt library b
 Why when I switch accounts my cursor is vibrating and the screen is black (CTRL-SHIFT-ESC to fix)
 Window manager (hyprland or whatever it's called)
 Workspaces
-FIX SCRIPTS!
 
 
 Things that are too hard for how much time they save configuring:
@@ -53,11 +51,13 @@ Make tabs maximize instead of what they do now when you put them at the top of t
 
 
 # Apps I need to install:
-Visual Studio (Make it optional)
 Brave
 
 
 Done:
+Visual Studio (Make it optional)
+FIX SCRIPTS!
+Neovim terminal find out how to get out of it when you've typed into it C-\
 Script to force add drive
 Script to make folder TRULY PUBLIC
 Neovim terminal is easier to close with better shortcut
