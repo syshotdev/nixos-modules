@@ -1,4 +1,4 @@
-'- Btw this was a config that I basically stole from MattCairnes's Nixos config.
+-- Btw this was a config that I basically stole from MattCairnes's Nixos config.
 
 -- Set no wrapping of text and <leader> key
 vim.cmd [[
