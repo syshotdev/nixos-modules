@@ -1,4 +1,4 @@
--- Btw this was a config that I basically stole from MattCairnes's Nixos config.
+'- Btw this was a config that I basically stole from MattCairnes's Nixos config.
 
 -- Set no wrapping of text and <leader> key
 vim.cmd [[
@@ -22,7 +22,7 @@ g.gruvbox_invert_selection = '0'
 ---------- QOL settings ----------
 
 -- Working directories 
-HOME = os.getenv("HOME")
+HOME = os.getenv('HOME')
 opt.backupdir = HOME .. '/.config/nvim/tmp/backup_files/'
 opt.directory = HOME .. '/.config/nvim/tmp/swap_files/'
 opt.undodir = HOME .. '/.config/nvim/tmp/undo_files/'
@@ -67,7 +67,7 @@ opt.cursorline = true
 opt.termguicolors = true
 
 -- Nvim tree for file explorer
-require("nvim-tree").setup()
+require('nvim-tree').setup()
 
 
 ---------- Other things that I didn't implement ----------
@@ -91,9 +91,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ LSP Diagnostics ]]
-local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
+local signs = { Error = 'E', Warn = 'W', Hint = 'H', Info = 'I' }
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
+  local hl = 'DiagnosticSign' .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end
 vim.diagnostic.config({

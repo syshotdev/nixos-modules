@@ -25,7 +25,7 @@ if is_port_open(host, port) then
   local pipe = '/tmp/godot.pipe'
 
   vim.lsp.start({
-    name = 'Godot',
+    name = 'godot',
     cmd = cmd,
     root_dir = vim.fs.dirname(vim.fs.find({ 'project.godot', '.git' }, { upward = true })[1]),
     on_attach = function(client, bufnr)
@@ -33,7 +33,7 @@ if is_port_open(host, port) then
     end
   })
 else
-  -- print("Info: GDScript LSP couldn't connect to " .. host .. ":" .. port)
+  print("Info: GDScript LSP couldn't connect to " .. host .. ":" .. port)
 end
 
 --[[

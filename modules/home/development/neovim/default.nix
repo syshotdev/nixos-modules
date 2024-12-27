@@ -16,7 +16,7 @@
       -- https://neovim.discourse.group/t/how-to-set-leader-key-in-lua/175/3
       ${builtins.readFile config/options.lua}
       ${builtins.readFile config/keymaps.lua}
-      ${builtins.readFile config/setup/gdscript.lua} -- Set up GDScript for Godot
+      ${builtins.readFile config/plugins/gdscript.lua} -- Set up GDScript for Godot
     '';
 
     plugins = with pkgs.vimPlugins; [
@@ -28,25 +28,25 @@
       }
       {
         plugin = lualine-nvim;
-        config = "
-          require('lualine').setup {
+        config = ''
+          require("lualine").setup {
             options = {
-              theme = 'gruvbox',
+              theme = "gruvbox",
             }
           }
-        ";
+        '';
 	      type = "lua";
       }
       # Tabs, like in firefox
       {
         plugin = bufferline-nvim;
-        config = builtins.readFile config/setup/telescope.lua;
+        config = builtins.readFile config/plugins/telescope.lua;
         type = "lua";
       }
       # Toggle terminal
       {
         plugin = toggleterm-nvim;
-        config = builtins.readFile config/setup/toggleterm.lua;
+        config = builtins.readFile config/plugins/toggleterm.lua;
         type = "lua";
       }
 
@@ -55,7 +55,7 @@
       {
         plugin = nvim-treesitter;
         config = ''
-          require('nvim-treesitter.configs').setup {}
+          require("nvim-treesitter.configs").setup {}
         '';
         type = "lua";
       }
@@ -73,7 +73,7 @@
       # File searching via telescope
       {
         plugin = telescope-nvim;
-        config = builtins.readFile config/setup/telescope.lua;
+        config = builtins.readFile config/plugins/telescope.lua;
 	      type = "lua";
       }
       telescope-fzf-native-nvim # To fix fuzzy finding to be better
@@ -104,12 +104,12 @@
       # LSP stuff (autocompletion)
       {
         plugin = nvim-lspconfig;
-        config = builtins.readFile config/setup/lspconfig.lua;
+        config = builtins.readFile config/plugins/lspconfig.lua;
 	      type = "lua";
       }
       {
         plugin = nvim-cmp;
-        config = builtins.readFile config/setup/cmp.lua;
+        config = builtins.readFile config/plugins/cmp.lua;
 	      type = "lua";
       }
       cmp-nvim-lsp
@@ -118,9 +118,10 @@
       # Debugger
       {
         plugin = nvim-dap;
-        config = builtins.readFile config/setup/dap.lua;
+        config = builtins.readFile config/plugins/dap.lua;
 	      type = "lua";
       }
+      nvim-dap-ui
     ];
   };
 
