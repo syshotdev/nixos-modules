@@ -22,7 +22,7 @@
     inherit (self) outputs;
 
     # Will make `computer` equal to the --flake .#{COMPUTER_NAME} eventually
-    computer = "home-computer";
+    computer = "desktop";
     # I saw a lot of repetitive code, so put it into variable
     specialArgs = {inherit inputs outputs nixpkgs computer;};
   in {

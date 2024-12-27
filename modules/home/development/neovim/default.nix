@@ -135,7 +135,10 @@
     csharp-ls
     nil # Nix
 
-    ccls # Useful C related things
+    # Useful C related things
+    llvmPackages_19.clang-unwrapped
+    llvmPackages_19.clang-tools
+    clangd
     glib # C standard library but not
     gcc
   ];
