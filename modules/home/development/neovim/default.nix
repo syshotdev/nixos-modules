@@ -136,9 +136,7 @@
     nil # Nix
 
     # Useful C related things
-    llvmPackages_19.clang-unwrapped
-    llvmPackages_19.clang-tools
-    clangd
+    ccls
     glib # C standard library but not
     gcc
   ];
