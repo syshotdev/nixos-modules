@@ -7,6 +7,12 @@ end
 
 -- Single quotes and parentheses are now required
 map_category_description('<leader>f', 'Find')
+which_key.register({
+  f = {
+    name = "Find",
+    f = { '<cmd>lua require("telescope.builtin").find_files()<cr>', 'Find File'},
+  }
+}, {prefix = "leader"})
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>', { desc = 'Find Files', noremap = true })
 map('n', '<leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>', { desc = 'Find Words', noremap = true })
 map('n', '<leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>', { desc = 'Find Buffers', noremap = true })
