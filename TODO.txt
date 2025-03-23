@@ -18,13 +18,10 @@ Minecraft fix error "GLFW error during init: [0x1000E]Failed to detect any suppo
 Minecraft launcher actually launches
 Minecraft profiles are downloaded and installed automatically
 Modrinth actually launches
-Neovim actual descriptions for keybinds
-Neovim autocorrect (And way to disable it very quickly)
+Neovim DAP
 Neovim bash why are certain programs highlighted and not others
 Neovim easy git
-Neovim edit .docx and .md (.docx maybe not, but .md I wanna see preview)
 Neovim goto definition working in C with header files
-Neovim how do I save a file with a name without going into nvim-filetree?
 Neovim visual indicators for buffers
 Neovim whenever I close terminal keep buffers the way they are
 Neovim whenever I open terminal keep buffers the way they are
@@ -55,6 +52,10 @@ Brave
 
 
 Done:
+Neovim how do I save a file with a name without going into nvim-filetree?
+Neovim edit .docx and .md (.docx maybe not, but .md I wanna see preview)
+Neovim actual descriptions for keybinds
+Neovim autocorrect (And way to disable it very quickly)
 Visual Studio (Make it optional)
 FIX SCRIPTS!
 Neovim terminal find out how to get out of it when you've typed into it C-\

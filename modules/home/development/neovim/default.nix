@@ -95,6 +95,8 @@
 	      type = "lua";
       }
 
+      # Lazygit
+      lazygit-nvim
       # Signs for git
       {
         plugin = gitsigns-nvim;
