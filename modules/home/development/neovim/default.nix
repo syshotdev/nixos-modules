@@ -62,7 +62,7 @@
       nvim-treesitter.withAllGrammars
       indentLine # Indent line
       {
-        plugin = render-markdown-nvim;
+        plugin = unstable.render-markdown-nvim;
         config = ''
           require('render-markdown').setup {
             completions = { lsp = { enabled = true } },
@@ -149,7 +149,7 @@
     # C
     pkg-config
     ccls
-    glib
+    glib # C standard library but not
     gcc
   ];
 }
