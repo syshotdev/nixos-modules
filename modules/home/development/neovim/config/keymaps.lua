@@ -54,7 +54,8 @@ map('n', '<leader>lg', '<cmd>LazyGit<cr>', { desc = 'LazyGit', noremap = true })
 
 -- Force remove split
 map('n', '<C-q>', function()
-  if vim.bo.modifiable and not vim.bo.readonly then
+  -- If modifiable file, not readonly, and not an empty file name, write file.
+  if vim.bo.modifiable and not vim.bo.readonly and vim.fn.expand("%") ~= "" then
     vim.cmd('wq')
   else
     vim.cmd('q!')
