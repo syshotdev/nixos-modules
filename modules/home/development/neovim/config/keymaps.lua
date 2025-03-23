@@ -48,7 +48,7 @@ map_category_description('<leader>l', 'Language/Text')
 map('n', '<leader>lm', '<cmd>lua require("render-markdown").toggle()<cr>', { desc = 'Markdown Toggle', noremap = true })
 map('n', '<leader>la', '<cmd>set spell!<cr>', { desc = 'Autocorrect Toggle', noremap = true })
 map('n', '<leader>lc', 'z=', { desc = 'Correct Hovered Word', noremap = true })
-map('n', '<leader>lg', '<cmd><cr>', { desc = 'LazyGit', noremap = true })
+map('n', '<leader>lg', '<cmd>LazyGit<cr>', { desc = 'LazyGit', noremap = true })
 
 
 
