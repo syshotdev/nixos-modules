@@ -62,7 +62,7 @@
       nvim-treesitter.withAllGrammars
       indentLine # Indent line
       {
-        plugin = unstable.render-markdown-nvim;
+        plugin = pkgs.unstable.vimPlugins.render-markdown-nvim;
         config = ''
           require('render-markdown').setup {
             completions = { lsp = { enabled = true } },
