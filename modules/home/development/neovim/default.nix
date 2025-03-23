@@ -138,6 +138,8 @@
   home.packages = with pkgs; [
     xsel # Add things to clipboard
 
+    lazygit
+
     # LSPs
     rust-analyzer
     jdt-language-server # Java
