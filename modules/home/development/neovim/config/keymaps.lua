@@ -47,8 +47,8 @@ map('n', '<A-h>', '<cmd>tabprevious<cr>', { desc = 'Tab Previous', noremap = tru
 map('n', '<A-l>', '<cmd>tabnext<cr>', { desc = 'Tab Next', noremap = true })
 
 map_category_description('<leader>l', 'Language/Text')
-map('n', '<leader>lm', '<cmd>require("render-markdown").toggle()<cr>', { desc = 'Markdown Toggle', noremap = true })
-map('n', '<leader>la', '<cmd>set spell!', { desc = 'Autocorrect Toggle', noremap = true })
+map('n', '<leader>lm', '<cmd>lua require("render-markdown").toggle()<cr>', { desc = 'Markdown Toggle', noremap = true })
+map('n', '<leader>la', '<cmd>set spell!<cr>', { desc = 'Autocorrect Toggle', noremap = true })
 map('n', '<leader>lc', 'z=', { desc = 'Correct Hovered Word', noremap = true })
 
 

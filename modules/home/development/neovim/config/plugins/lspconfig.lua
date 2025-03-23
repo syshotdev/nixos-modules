@@ -52,6 +52,7 @@ lspconfig.markdown_oxide.setup {
       },
     }
   ),
+  on_attach = on_attach
 }
 
 -- ccls setup

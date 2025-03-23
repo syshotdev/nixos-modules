@@ -64,9 +64,7 @@
       {
         plugin = pkgs.unstable.vimPlugins.render-markdown-nvim;
         config = ''
-          require('render-markdown').setup {
-            completions = { lsp = { enabled = true } },
-          }
+          require('render-markdown').setup {}
           require('render-markdown').enable()
         '';
         type = "lua";
@@ -145,7 +143,7 @@
     lua-language-server
     csharp-ls
     nil # Nix
-    markdown-oxide # Markdown
+    unstable.markdown-oxide # Markdown
     # C
     pkg-config
     ccls
