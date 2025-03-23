@@ -61,6 +61,16 @@
       }
       nvim-treesitter.withAllGrammars
       indentLine # Indent line
+      {
+        plugin = render-markdown-nvim;
+        config = ''
+          require('render-markdown').setup {
+            completions = { lsp = { enabled = true } },
+          }
+          require('render-markdown').enable()
+        '';
+        type = "lua";
+      }
       # Better syntax-highlighting and indenting
       vim-nix
       vim-godot
@@ -128,18 +138,18 @@
   home.packages = with pkgs; [
     xsel # Add things to clipboard
 
+    # LSPs
     rust-analyzer
     jdt-language-server # Java
     gdtoolkit # GDscript
     lua-language-server
     csharp-ls
     nil # Nix
-
-    # C autocomplete
+    markdown-oxide # Markdown
+    # C
     pkg-config
     ccls
-
-    glib # C standard library but not
+    glib
     gcc
   ];
 }

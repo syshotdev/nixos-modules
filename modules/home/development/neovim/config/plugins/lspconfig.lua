@@ -37,33 +37,57 @@ lspconfig.lua_ls.setup {
   }
 }
 
+-- Markdown
+lspconfig.markdown_oxide.setup {
+  -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+  -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+  capabilities = vim.tbl_deep_extend(
+    'force',
+    capabilities,
+    {
+      workspace = {
+        didChangeWatchedFiles = {
+          dynamicRegistration = true,
+        },
+      },
+    }
+  ),
+}
+
+-- ccls setup
 -- Requires pkg-config to be installed
 local function get_library_paths(package_name)
-    local pkg_flags = {}
-    local handle = io.popen("pkg-config --cflags --libs " .. package_name)
-    if handle then
-        for flag in handle:read("*a"):gmatch("%S+") do
-            table.insert(pkg_flags, flag)
-        end
-        handle:close()
+  local pkg_flags = {}
+  local handle = io.popen("pkg-config --cflags --libs " .. package_name)
+  if handle then
+    for flag in handle:read("*a"):gmatch("%S+") do
+      table.insert(pkg_flags, flag)
     end
-    return pkg_flags
+    handle:close()
+  end
+  return pkg_flags
 end
 
 local glib_flags = get_library_paths("glib-2.0")
 
 lspconfig.ccls.setup {
-    cmd = { "ccls" },
-    root_dir = lspconfig.util.root_pattern(".ccls", "compile_commands.json", ".git"),
-    init_options = {
-        cache = {
-            directory = ".ccls-cache";
-        },
-        clang = {
-            extraArgs = vim.tbl_flatten({
-                { "-std=c11", "-x", "c", "--gcc" },
-                glib_flags,
-            }),
-        },
+  cmd = { "ccls" },
+  root_dir = lspconfig.util.root_pattern(".ccls", "compile_commands.json", ".git"),
+  init_options = {
+    cache = {
+      directory = ".ccls-cache",
     },
+    gcc = {
+      extraArgs = vim.tbl_flatten({
+        { "-std=c11", "-x", "c", "--gcc" },
+        glib_flags,
+      }),
+    },
+    clang = {
+      extraArgs = vim.tbl_flatten({
+        { "-std=c11", "-x", "c", "--gcc" },
+        glib_flags,
+      }),
+    },
+  },
 }

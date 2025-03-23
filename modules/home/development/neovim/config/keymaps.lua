@@ -1,4 +1,5 @@
 local map = vim.keymap.set;
+local which_key = require('which-key');
 
 local function map_category_description(key, description)
   vim.keymap.set('n', key, '<nop>', { desc = description })
@@ -44,6 +45,12 @@ map('n', '<leader>tc', '<cmd>tabclose<cr>', { desc = 'Tab Close', noremap = true
 -- Alt for easier access between them
 map('n', '<A-h>', '<cmd>tabprevious<cr>', { desc = 'Tab Previous', noremap = true })
 map('n', '<A-l>', '<cmd>tabnext<cr>', { desc = 'Tab Next', noremap = true })
+
+map_category_description('<leader>l', 'Language/Text')
+map('n', '<leader>lm', '<cmd>require("render-markdown").toggle()<cr>', { desc = 'Markdown Toggle', noremap = true })
+map('n', '<leader>la', '<cmd>set spell!', { desc = 'Autocorrect Toggle', noremap = true })
+map('n', '<leader>lc', 'z=', { desc = 'Correct Hovered Word', noremap = true })
+
 
 
 -- Force remove split
