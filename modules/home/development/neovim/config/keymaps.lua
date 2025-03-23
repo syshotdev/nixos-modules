@@ -82,24 +82,24 @@ end, { desc = 'Code Format', noremap = true })
 -- This 'Code Sort' doesn't work for whatever reason, use :sort
 --map('v', '<leader>cs', '<cmd>'<,'>sort<cr>', { desc = 'Code Sort', noremap = true })
 
-map("n", "<leader>dt", ":lua require('dapui').toggle()<CR>", { desc = 'Debugger Toggle', noremap = true })
-map("n", "<leader>dr", ":lua require('dap').continue()<CR>", { desc = 'Debugger Run', noremap = true })
+map("n", "<leader>dt", "<cmd>lua require('dapui').toggle()<cr>", { desc = 'Debugger Toggle', noremap = true })
+map("n", "<leader>dr", "<cmd>lua require('dap').continue()<cr>", { desc = 'Debugger Run', noremap = true })
 
-map("n", "<F1>", ":lua require('dap').step_over()<CR>", { desc = 'Step Over', noremap = true })
-map("n", "<F2>", ":lua require('dap').step_into()<CR>", { desc = 'Step Into', noremap = true })
-map("n", "<F3>", ":lua require('dap').step_out()<CR>", { desc = 'Step Out Of', noremap = true })
+map("n", "<F1>", "<cmd>lua require('dap').step_over()<cr>", { desc = 'Step Over', noremap = true })
+map("n", "<F2>", "<cmd>lua require('dap').step_into()<cr>", { desc = 'Step Into', noremap = true })
+map("n", "<F3>", "<cmd>lua require('dap').step_out()<cr>", { desc = 'Step Out Of', noremap = true })
 
-map("n", "<Leader>dh", ":lua require('dap.ui.variables').hover()<CR>", { desc = 'Debugger Hover', noremap = true })
-map("v", "<Leader>dh", ":lua require('dap.ui.variables').visual_hover()<CR>", { desc = 'Debugger Visual Hover', noremap = true })
+map("n", "<Leader>dh", "<cmd>lua require('dap.ui.variables').hover()<cr>", { desc = 'Debugger Hover', noremap = true })
+map("v", "<Leader>dh", "<cmd>lua require('dap.ui.variables').visual_hover()<cr>", { desc = 'Debugger Visual Hover', noremap = true })
 
-map("n", "<Leader>dro", ":lua require('dap').repl.open()<CR>", { desc = 'Debugger Repl Open', noremap = true })
-map("n", "<Leader>drl", ":lua require('dap').repl.run_last()<CR>", { desc = 'Debugger Repl Run Last', noremap = true })
+map("n", "<Leader>dro", "<cmd>lua require('dap').repl.open()<cr>", { desc = 'Debugger Repl Open', noremap = true })
+map("n", "<Leader>drl", "<cmd>lua require('dap').repl.run_last()<cr>", { desc = 'Debugger Repl Run Last', noremap = true })
 
-map("n", "<leader>db", ":lua require('dap').toggle_breakpoint()<CR>", { desc = 'Debugger Breakpoint', noremap = true })
-map("n", "<Leader>dc", ":lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>", { desc = 'Debugger Breakpoint Condition', noremap = true })
---map("n", "<Leader>dbm", ":lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') )<CR>")
+map("n", "<leader>db", "<cmd>lua require('dap').toggle_breakpoint()<cr>", { desc = 'Debugger Breakpoint', noremap = true })
+map("n", "<Leader>dc", "<cmd>lua require('dap').set_breakpoint(vim.fn.input('Breakpoint condition: '))<cr>", { desc = 'Debugger Breakpoint Condition', noremap = true })
+--map("n", "<Leader>dbm", "<cmd>lua require('dap').set_breakpoint({ nil, nil, vim.fn.input('Log point message: ') )<cr>")
 
-map("n", "<Leader>ds", ":lua require('dap.ui.variables').scopes()<CR>", { desc = 'Debugger Scopes', noremap = true })
+map("n", "<Leader>ds", "<cmd>lua require('dap.ui.variables').scopes()<cr>", { desc = 'Debugger Scopes', noremap = true })
 
 local function close_all_tabs_and_save()
   local tabpages = vim.api.nvim_list_tabpages()
@@ -118,19 +118,3 @@ end
 
 -- QuitAllForce
 vim.api.nvim_create_user_command('QuitAllForce', close_all_tabs_and_save, {})
-
---[[
--- I don't think these work/I don't need them rn:
---
-
-map('n', '<leader>D', vim.lsp.buf.type_definition, opts)
-map('n', '<leader>fh', builtin.help_tags, {})
-map('n', 'K', vim.lsp.buf.hover, opts)
-map('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-map('n', 'wa', vim.lsp.buf.add_workspace_folder, opts)
-map('n', 'wr', vim.lsp.buf.remove_workspace_folder, opts)
-map('n', 'wl', function()
-  print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-end, opts)
-]]
---
