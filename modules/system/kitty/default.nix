@@ -2,7 +2,7 @@
 # I picked kitty because unicode support, hardware accel, tilability, fuzzy finding, and more
 { pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [ 
     kitty
   ];
 
@@ -18,5 +18,8 @@
   # Set kitty as default terminal
   environment.variables = {
     TERMINAL = "kitty";
-  };
+  };  
+
+  # Bash auto-completion is expected here. Enable homePackages.deveolopment.bash
+  environment.pathsToLink = [ "/share/bash-completion" ];
 }

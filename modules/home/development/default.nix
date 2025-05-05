@@ -1,5 +1,5 @@
 {
-  fzf = ./fzf;
+  bash = ./bash;
   neovim = ./neovim;
   vs-code = ./vs-code;
   git = ./git;

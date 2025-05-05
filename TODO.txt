@@ -7,7 +7,7 @@ Neovim DAP
 Neovim whenever I close terminal keep buffers the way they are
 Neovim whenever I open terminal keep buffers the way they are
 Script to turn mkv files to mp4 automatically on OBS stop recording
-Terminal autocorrect/intellisense
+Terminal autocorrect/intellisense (STILL NOT DONE)
 Terminal keybinds
 Wallpaper should be cool
 Workspaces
