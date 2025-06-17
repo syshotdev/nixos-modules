@@ -7,9 +7,9 @@
   ];
 
   fonts.packages = with pkgs; [
-    nerdfonts
     jetbrains-mono
-  ];
+    # Nerdfonts on next line
+  ]++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Link Kitty configuration
   environment.etc."xdg/kitty/kitty.conf".source = ./kitty.conf;
