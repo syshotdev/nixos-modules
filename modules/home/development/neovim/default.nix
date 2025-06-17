@@ -143,7 +143,7 @@
     # LSPs
     rust-analyzer
     jdt-language-server # Java
-    gdtoolkit # GDscript
+    gdtoolkit_4 # GDscript
     lua-language-server
     csharp-ls
     nil # Nix
