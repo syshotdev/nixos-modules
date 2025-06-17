@@ -7,7 +7,7 @@
     platformio-core
     gcc
     gdb
-    python39
+    python310
   ];
 
   programs.vscode = {
