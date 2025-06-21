@@ -15,51 +15,41 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     ...
   } @ inputs: let
     # Everything inside this "let" statement are variables
     inherit (self) outputs;
 
-    # Will make `computer` equal to the --flake .#{COMPUTER_NAME} eventually
-    computer = "desktop";
-    # I saw a lot of repetitive code, so put it into variable
-    specialArgs = {inherit inputs outputs nixpkgs computer;};
+    system = "x86_64-linux";
+    pkgsUnstable = import nixpkgs-unstable {
+      inherit system;
+    };
+    pkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        (final: prev: {
+          unstable = pkgsUnstable;
+        })
+      ];
+    };
+    specialArgs = {inherit inputs outputs nixpkgs pkgs home-manager;};
   in {
+
     # Everything inside these brackets are attributes, accessable via outputs.attribute
-    systemModules = import ./modules/system; # Modules for system
-    homeModules = import ./modules/home; # Modules for users
-    scriptModules = import ./modules/scripts; # Scripts that I've made
+    systemModules = import ./modules/system { inherit specialArgs;}; # Modules for system
+    homeModules = import ./modules/home { inherit specialArgs;}; # Modules for users
+    scriptModules = import ./modules/scripts { inherit specialArgs;}; # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
-    customPackages = import ./modules/custom-packages;
+    customPackages = import ./modules/custom-packages { inherit specialArgs;};
 
-    overlays = import ./modules/overlays {inherit inputs; };
+    overlays = import ./modules/overlays { inherit specialArgs;};
 
-    # NixOS configuration entrypoint
-    # Available through 'sudo nixos-rebuild switch --flake .#computername'
     nixosConfigurations = {
-      home-computer = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        modules = [
-          home-manager.nixosModules.home-manager{
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-          
-          ./computers/home-computer/configuration.nix
-        ];
-      };
-      work-laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        modules = [
-          home-manager.nixosModules.home-manager{
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-          
-          ./computers/work-laptop/configuration.nix
-        ];
-      };
+      # Eventually tests
     };
   };
 }
