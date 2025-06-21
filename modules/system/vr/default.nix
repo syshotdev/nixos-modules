@@ -1,4 +1,4 @@
 {
-  monado = ./monado { inherit pkgs; };
-  simula = ./simula { inherit pkgs; };
+  monado = ./monado;
+  simula = ./simula;
 }

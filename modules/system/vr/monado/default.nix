@@ -1,4 +1,4 @@
-{pkgs, user, ...}:
+{pkgs, ...}:
 let
   # Use `fetchGit` to download the repository
   handTrackingRepo = pkgs.fetchgit {

@@ -38,6 +38,7 @@
     specialArgs = {inherit inputs outputs nixpkgs pkgs home-manager;};
   in {
     # Everything inside these brackets are attributes, accessable via outputs.attribute
+    # TODO: Fix firefox
     systemModules = import ./modules/system { inherit inputs outputs nixpkgs pkgs home-manager; }; # Modules for system
     homeModules = import ./modules/home { inherit inputs outputs nixpkgs pkgs home-manager; }; # Modules for users
     scriptModules = import ./modules/scripts { inherit inputs outputs nixpkgs pkgs home-manager; }; # Scripts that I've made

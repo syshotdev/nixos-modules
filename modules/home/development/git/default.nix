@@ -1,4 +1,4 @@
-{user, nickname, email, lib, ...}: 
+{ user, nickname, email, lib, ...}: 
 let
   ssh = builtins.pathExists /home/${user}/.ssh/id_ed25519.pub;
 in {
