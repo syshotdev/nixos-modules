@@ -37,9 +37,9 @@
     specialArgs = {inherit inputs outputs nixpkgs pkgs home-manager;};
   in {
     # Everything inside these brackets are attributes, accessable via outputs.attribute
-    systemModules = import ./modules/system; # Modules for system
-    homeModules = import ./modules/home; # Modules for users
-    scriptModules = import ./modules/scripts; # Scripts that I've made
+    systemModules = import ./modules/system { inherit specialArgs; }; # Modules for system
+    homeModules = import ./modules/home { inherit specialArgs; }; # Modules for users
+    scriptModules = import ./modules/scripts { inherit specialArgs; }; # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
@@ -47,29 +47,8 @@
 
     overlays = import ./modules/overlays {inherit inputs; };
 
-    # NixOS configuration entrypoint
-    # Available through 'sudo nixos-rebuild switch --flake .#computername'
     nixosConfigurations = {
-      home-computer = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        modules = [
-          home-manager.nixosModules.home-manager{
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-          
-          ./computers/home-computer/configuration.nix
-        ];
-      };
-      work-laptop = nixpkgs.lib.nixosSystem {
-        specialArgs = specialArgs;
-        modules = [
-          home-manager.nixosModules.home-manager{
-            home-manager.extraSpecialArgs = specialArgs;
-          }
-          
-          ./computers/work-laptop/configuration.nix
-        ];
-      };
+      # Eventually tests
     };
   };
 }
