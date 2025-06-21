@@ -15,7 +15,6 @@
   outputs = {
     self,
     nixpkgs,
-    nixpkgs-unstable,
     home-manager,
     ...
   } @ inputs: let
@@ -37,20 +36,40 @@
     lib = pkgs.lib;
     specialArgs = {inherit inputs outputs nixpkgs pkgs home-manager;};
   in {
-
     # Everything inside these brackets are attributes, accessable via outputs.attribute
-    systemModules = lib.mapAttrs (_: m: m specialArgs) (import ./modules/system); # Modules for system
-    homeModules = lib.mapAttrs (_: m: m specialArgs) (import ./modules/home); # Modules for users
-    scriptModules = lib.mapAttrs (_: m: m specialArgs) (import ./modules/scripts); # Scripts that I've made
+    systemModules = import ./modules/system; # Modules for system
+    homeModules = import ./modules/home; # Modules for users
+    scriptModules = import ./modules/scripts; # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
-    customPackages = import ./modules/custom-packages { inherit specialArgs;};
+    customPackages = import ./modules/custom-packages;
 
-    overlays = import ./modules/overlays { inherit specialArgs;};
+    overlays = import ./modules/overlays {inherit inputs; };
 
+    # NixOS configuration entrypoint
+    # Available through 'sudo nixos-rebuild switch --flake .#computername'
     nixosConfigurations = {
-      # Eventually tests
+      home-computer = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        modules = [
+          home-manager.nixosModules.home-manager{
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          
+          ./computers/home-computer/configuration.nix
+        ];
+      };
+      work-laptop = nixpkgs.lib.nixosSystem {
+        specialArgs = specialArgs;
+        modules = [
+          home-manager.nixosModules.home-manager{
+            home-manager.extraSpecialArgs = specialArgs;
+          }
+          
+          ./computers/work-laptop/configuration.nix
+        ];
+      };
     };
   };
 }
