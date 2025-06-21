@@ -39,15 +39,15 @@
   in {
 
     # Everything inside these brackets are attributes, accessable via outputs.attribute
-    systemModules = import ./modules/system; # Modules for system
-    homeModules = import ./modules/home; # Modules for users
-    scriptModules = import ./modules/scripts; # Scripts that I've made
+    systemModules = lib.mapAttrs (_: m: m specialArgs) (import ./modules/system); # Modules for system
+    homeModules = lib.mapAttrs (_: m: m specialArgs) (import ./modules/home); # Modules for users
+    scriptModules = lib.mapAttrs (_: m: m specialArgs) (import ./modules/scripts); # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
     customPackages = import ./modules/custom-packages { inherit specialArgs;};
 
-    overlays = import ./modules/overlays;
+    overlays = import ./modules/overlays { inherit specialArgs;};
 
     nixosConfigurations = {
       # Eventually tests
