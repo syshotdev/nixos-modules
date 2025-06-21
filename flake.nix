@@ -38,9 +38,9 @@
     specialArgs = {inherit inputs outputs nixpkgs pkgs home-manager;};
   in {
     # Everything inside these brackets are attributes, accessable via outputs.attribute
-    systemModules = import ./modules/system { inherit specialArgs; }; # Modules for system
-    homeModules = import ./modules/home { inherit specialArgs; }; # Modules for users
-    scriptModules = import ./modules/scripts { inherit specialArgs; }; # Scripts that I've made
+    systemModules = import ./modules/system { inherit inputs outputs nixpkgs pkgs home-manager; }; # Modules for system
+    homeModules = import ./modules/home { inherit inputs outputs nixpkgs pkgs home-manager; }; # Modules for users
+    scriptModules = import ./modules/scripts { inherit inputs outputs nixpkgs pkgs home-manager; }; # Scripts that I've made
 
     # Custom packages (to be built) not in the nix repository
     # This variable *only* lists the paths to the packages, you have to build them and include them into pkgs.
