@@ -1,3 +1,3 @@
-This directory is home to packages usually used on the user level.
+## Template
 
-TODO: More description here
+This readme is under construction. It will eventually detail what this folder's purpose is

@@ -5,22 +5,10 @@ let
 in {
   development = {
     neovim = callModule ./development/neovim;
-    bash = callModule ./development/bash;
-    vs-code = callModule ./development/vs-code;
-    git = callModule ./development/git;
-    godot4-mono = callModule ./development/godot4-mono;
   };
-  art = {
-    blender-cad = callModule ./art/blender-cad;
-    video-editing = callModule ./art/video-editing;
-    video-recording = callModule ./art/video-recording;
-  };
-  games = {
-    minecraft = callModule ./games/minecraft;
-  };
-  communication = {};
-  sound = {};
-  other = {
-    firefox = callModule ./other/firefox;
-  };
+  art = import ./art;
+  games = import ./games;
+  communication = import ./communication;
+  sound = import ./sound;
+  other = import ./other;
 }
