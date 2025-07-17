@@ -18,6 +18,6 @@ in {
     monado = callModule ./vr/monado;
     simula = callModule ./vr/simula;
   };
-  steam = ./steam;
+  steam = callModule ./steam;
   kitty = callModule ./kitty;
 }

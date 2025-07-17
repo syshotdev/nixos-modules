@@ -7,7 +7,7 @@ in {
     neovim = callModule ./development/neovim;
     bash = callModule ./development/bash;
     vs-code = callModule ./development/vs-code;
-    git = ./development/git;
+    git = callModule ./development/git;
     godot4-mono = callModule ./development/godot4-mono;
   };
   art = {
@@ -21,6 +21,6 @@ in {
   communication = {};
   sound = {};
   other = {
-    firefox = ./other/firefox;
+    firefox = callModule ./other/firefox;
   };
 }

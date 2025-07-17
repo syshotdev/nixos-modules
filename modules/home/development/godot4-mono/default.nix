@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs ? import <nixpkgs> {} }:
 
 # Call the package (aka build it into a package)
 pkgs.callPackage (rec {
