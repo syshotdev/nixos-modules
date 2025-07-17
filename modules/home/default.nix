@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{...}:{
   art = import ./art;
   development = import ./development;
   games = import ./games;
