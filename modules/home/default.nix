@@ -1,10 +1,6 @@
-{ pkgs, ...}:
-let
-  # Function that imports a function and calls it with pkgs
-  callModule = path: import path { inherit pkgs; };
-in {
+{ pkgs, ...}: {
   development = {
-    neovim = callModule ./development/neovim;
+    neovim = ./development/neovim { inherit pkgs; };
   };
   art = import ./art;
   games = import ./games;
