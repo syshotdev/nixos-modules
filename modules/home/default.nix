@@ -1,8 +1,6 @@
 { pkgs, ...}: {
-  development = {
-    neovim = ./development/neovim { inherit pkgs; };
-  };
   art = import ./art;
+  development = import ./development;
   games = import ./games;
   communication = import ./communication;
   sound = import ./sound;
