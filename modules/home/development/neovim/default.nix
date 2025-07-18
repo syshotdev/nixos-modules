@@ -111,6 +111,12 @@
 	      type = "lua";
       }
 
+      # AI
+      {
+        plugin = ollama-nvim;
+        config = builtins.readFile config/plugins/ollama.lua;
+	      type = "lua";
+      }
       # LSP stuff (autocompletion)
       {
         plugin = nvim-lspconfig;
@@ -125,6 +131,7 @@
       cmp-nvim-lsp
       luasnip
 
+      # TODO: Get working
       # Debugger
       {
         plugin = nvim-dap;

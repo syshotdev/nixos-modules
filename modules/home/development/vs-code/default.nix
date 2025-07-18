@@ -2,7 +2,8 @@
   pkgs,
   ...
 }: {
-
+# TODO: Decouple this package from the flake.nix pkgs
+# Basically, make this its own module that gets its own version
   home.packages = with pkgs; [ 
     platformio-core
     gcc
@@ -25,7 +26,7 @@
         name = "platformio-ide";
         publisher = "platformio";
         version = "3.3.3";
-        sha256 = "sha256-d8kwQVoG/MOujmvMaX6Y0wl85L2PNdv2EnqTZKo8pGk=";
+        sha256 = "sha256-cVYnFhdeClHhuVaTWRU2IDIA1mFq1iLveZUIhEhMSck=";
       }
       {
         name = "remote-containers";

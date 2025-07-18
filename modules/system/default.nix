@@ -2,6 +2,7 @@
 # These should be stuff you would like to share with others, not your personal configurations.
 {...}: {
   # List your module files here
+  ai = import ./ai;
   optimizations = import ./optimizations;
   vr = import ./vr;
   steam = ./steam;
