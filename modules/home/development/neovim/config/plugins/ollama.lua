@@ -1,10 +1,11 @@
 require('ollama').setup({
-  model = "qwen2.5-coder:7b",
+  model = "qwen2.5-coder:14b",
   url   = "http://127.0.0.1:11434",
   serve = {
     on_start = false,
   },
-    codegen = {
+  prompts = {
+    Code_Generate_Context = {
       prompt = [[
 You are an AI pair‑programmer. Given the context below, generate ONLY code (and inline comments if needed).
 Respond in exactly THIS FORMAT: 
@@ -20,10 +21,9 @@ $buf
 --- User’s instruction ---
 $input
 ]],
-      model  = "qwen2.5-coder:7b",
       action = "insert",
     },
-    codereplace = {
+    Code_Replace_Context = {
       prompt = [[
 You are an AI pair‑programmer. Given the context below, generate **only** the replacement code (and inline comments if needed).
 Respond in exactly THIS FORMAT: 
@@ -42,38 +42,40 @@ $sel
 --- User’s instruction ---
 $input
 ]],
-      model  = "qwen2.5-coder:7b",
       action = "replace",
     },
-    ask = {
-      prompt = [[$input]],
-      model  = "qwen2.5-coder:7b",
-      action = "display",
-    }
   },
 })
 
 vim.keymap.set(
   { 'n', 'v' },
-  '<leader>aia',
+  '<leader>as',
+  function()
+    require('ollama').prompt("Simplify_Code")
+  end,
+  { desc = "AI Simplify Code (with file context)" }
+)
+vim.keymap.set(
+  { 'n', 'v' },
+  '<leader>aa',
   function()
     require('ollama').prompt()
   end,
-  { desc = "AI Ask (Qwen)" }
+  { desc = "AI Ask" }
 )
 vim.keymap.set(
   { 'n', 'v' },
-  '<leader>aig',
+  '<leader>ag',
   function()
-    require('ollama').prompt("codegen")
+    require('ollama').prompt("Generate_Code_Context")
   end,
-  { desc = "AI Codegen (Qwen)" }
+  { desc = "AI Generate Code (with file context)" }
 )
 vim.keymap.set(
   { 'n', 'v' },
-  '<leader>air',
+  '<leader>ar',
   function()
-    require('ollama').prompt("codereplace")
+    require('ollama').prompt("Replace_Code_Context")
   end,
-  { desc = "AI Replace (Qwen)" }
+  { desc = "AI Replace Code (with file context)" }
 )
