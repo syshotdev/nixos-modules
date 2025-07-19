@@ -79,7 +79,6 @@ map('n', '<leader>gi', vim.lsp.buf.implementation, { desc = 'Goto Implementation
 map('n', '<leader>gr', vim.lsp.buf.references, { desc = 'Goto References', noremap = true })
 
 map_category_description('<leader>c', 'Code')
--- c(code) a(action)
 map('n', '<leader>ca', vim.lsp.buf.code_action, { desc = 'Code Action', noremap = true })
 map('n', '<leader>cr', vim.lsp.buf.rename, { desc = 'Code Rename', noremap = true })
 map('n', '<leader>cf', function()
