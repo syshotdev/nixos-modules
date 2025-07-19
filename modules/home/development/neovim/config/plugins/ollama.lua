@@ -1,3 +1,5 @@
+local response_format = "Respond EXACTLY in this format:\n```$ftype\n<your code>\n```"
+
 require('ollama').setup({
   model = "qwen2.5-coder:14b",
   url   = "http://127.0.0.1:11434",
@@ -5,77 +7,20 @@ require('ollama').setup({
     on_start = false,
   },
   prompts = {
-    Code_Generate_Context = {
-      prompt = [[
-You are an AI pair‑programmer. Given the context below, generate ONLY code (and inline comments if needed).
-Respond in exactly THIS FORMAT: 
-```$ftype
-<your code>
-```
-
-File type: $ftype
-
---- File context ---
-$buf
-
---- User’s instruction ---
-$input
-]],
+    Generate_Code_Context = {
+      prompt = "You are an AI pair-programmer. Given the user's instructions and context below, generate **only** code (including inline comments if necessary) based on their directions."
+              .. response_format
+              .. "\n--- User's instruction ---\n$input"
+              .. "\n--- File context ---\n```$ftype\n$buf\n```",
       action = "insert",
     },
-    Code_Replace_Context = {
-      prompt = [[
-You are an AI pair‑programmer. Given the context below, generate **only** the replacement code (and inline comments if needed).
-Respond in exactly THIS FORMAT: 
-```$ftype
-<your code>
-```
-
-File type: $ftype
-
---- File context ---
-$buf
-
---- Code to replace ---
-$sel
-
---- User’s instruction ---
-$input
-]],
+    Replace_Code_Context = {
+      prompt = "You are an AI pair-programmer. Given the user's instructions and context below, replace the selected code with **only** code and with the requested modifications (including inline comments if necessary)."
+              .. response_format
+              .. "\n--- User's instruction ---\n$input"
+              .. "\n--- Selected code ---\n```$ftype\n$sel```\n"
+              .. "\n--- File context ---\n```$ftype\n$buf\n```",
       action = "replace",
     },
   },
 })
-
-vim.keymap.set(
-  { 'n', 'v' },
-  '<leader>as',
-  function()
-    require('ollama').prompt("Simplify_Code")
-  end,
-  { desc = "AI Simplify Code (with file context)" }
-)
-vim.keymap.set(
-  { 'n', 'v' },
-  '<leader>aa',
-  function()
-    require('ollama').prompt()
-  end,
-  { desc = "AI Ask" }
-)
-vim.keymap.set(
-  { 'n', 'v' },
-  '<leader>ag',
-  function()
-    require('ollama').prompt("Generate_Code_Context")
-  end,
-  { desc = "AI Generate Code (with file context)" }
-)
-vim.keymap.set(
-  { 'n', 'v' },
-  '<leader>ar',
-  function()
-    require('ollama').prompt("Replace_Code_Context")
-  end,
-  { desc = "AI Replace Code (with file context)" }
-)

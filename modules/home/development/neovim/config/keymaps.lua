@@ -3,6 +3,12 @@ local map = vim.keymap.set
 local function map_category_description(key, description)
   vim.keymap.set('n', key, '<nop>', { desc = description })
 end
+map_category_description('<leader>a', 'AI')
+map({ 'n', 'v' }, '<leader>aa', '<cmd>lua require("ollama").prompt()<cr>', { desc = "AI Ask (pick prompt)" })
+map({ 'n', 'v' }, '<leader>as', '<cmd>lua require("ollama").prompt("Simplify_Code")<cr>', { desc = "AI Simplify Code" })
+map({ 'n', 'v' }, '<leader>ag', '<cmd>lua require("ollama").prompt("Generate_Code_Context")<cr>', { desc = "AI Generate Code (with file context)" })
+map({ 'n', 'v' }, '<leader>ar', '<cmd>lua require("ollama").prompt("Replace_Code_Context")<cr>', { desc = "AI Replace Code (with file context)" })
+
 
 map_category_description('<leader>f', 'Find')
 map('n', '<leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>', { desc = 'Find Files', noremap = true })
